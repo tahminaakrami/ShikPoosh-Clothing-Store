@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>شیک پوش | فروشگاه لباس</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+
+    <header class="header">
+      <div class="container navbar">
+        <button class="menu-btn" id="menuBtn" aria-label="منو">☰</button>
+
+        <a href="#home" class="logo"> شیک پوش<span>.</span> </a>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#home">خانه</a>
+          <a href="#products">محصولات</a>
+          <a href="#about">درباره ما</a>
+          <a href="#contact">تماس با ما</a>
+        </nav>
+
+        <button class="cart-button" onclick="showPage('cart')">
+          🛍️ سبد خرید
+          <span id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- HOME PAGE -->
+
+    <main id="homePage">
+      <!-- HERO -->
+
+      <section class="hero">
+        <div class="hero-content">
+          <span class="eyebrow"> کالکشن جدید ۱۴۰۵ </span>
+
+          <h1>
+            سادگی، زیباترین
+            <br />
+            <span>امضای استایل توست.</span>
+          </h1>
+
+          <p>لباس‌هایی برای هر روز، با طراحی ماندگار و کیفیتی که حسش می‌کنی.</p>
+
+          <a href="#products" class="primary-btn"> مشاهده محصولات ← </a>
+        </div>
+
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200"
+            alt="Fashion Collection"
+          />
+
+          <div class="hero-label">NEW COLLECTION</div>
+        </div>
+      </section>
+
+      <!-- BENEFITS -->
+
+      <section class="benefits container">
+        <div class="benefit">
+          <span>✦</span>
+          <div>
+            <h4>کیفیت ماندگار</h4>
+            <p>پارچه‌های باکیفیت</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <span>↗</span>
+          <div>
+            <h4>ارسال سریع</h4>
+            <p>تحویل در سراسر افغانستان</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <span>♡</span>
+          <div>
+            <h4>خرید آسان</h4>
+            <p>تجربه خرید مطمئن</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+
+      <section class="products-section container" id="products">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">منتخب ما</span>
+            <h2>محبوب‌ترین محصولات</h2>
+          </div>
+
+          <div class="slider-buttons">
+            <button onclick="nextSlide(-1)">→</button>
+            <button onclick="nextSlide(1)">←</button>
+          </div>
+        </div>
+
+        <p id="loadingText" class="loading">در حال دریافت محصولات...</p>
+
+        <div class="product-slider" id="productSlider">
+          <!-- Products from API -->
+        </div>
+      </section>
+
+      <!-- COLOR SECTION -->
+
+      <section class="color-banner">
+        <div class="container color-banner-content">
+          <div>
+            <span class="eyebrow">استایل خودت را بساز</span>
+
+            <h2>یک مدل، چندین حس متفاوت.</h2>
+
+            <p>رنگ مورد علاقه‌ات را انتخاب کن و استایل جدیدی بساز.</p>
+
+            <button class="primary-btn" onclick="showPage('customize')">
+              تغییر رنگ لباس
+            </button>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=900"
+            alt="Color Collection"
+          />
+        </div>
+      </section>
+    </main>
+
+    <!-- CART PAGE -->
+
+    <section class="page container" id="cartPage">
+      <span class="eyebrow">خرید شما</span>
+
+      <h1>سبد خرید</h1>
+
+      <div id="cartContent"></div>
+    </section>
+
+    <!-- CHECKOUT PAGE -->
+
+    <section class="page container" id="checkoutPage">
+      <span class="eyebrow">مرحله پایانی</span>
+
+      <h1>تکمیل سفارش</h1>
+
+      <form id="checkoutForm" class="checkout-layout">
+        <div class="form-fields">
+          <label>
+            نام و نام خانوادگی
+            <input
+              type="text"
+              id="customerName"
+              placeholder="نام شما"
+              required
+            />
+          </label>
+
+          <label>
+            شماره موبایل
+            <input
+              type="tel"
+              id="customerPhone"
+              placeholder="09123456789"
+              required
+            />
+          </label>
+
+          <label class="full-width">
+            آدرس کامل
+            <textarea
+              id="customerAddress"
+              rows="4"
+              placeholder="آدرس خود را وارد کنید"
+              required
+            ></textarea>
+          </label>
+
+          <label class="full-width">
+            توضیحات سفارش
+            <textarea rows="3"></textarea>
+          </label>
+        </div>
+
+        <div class="summary">
+          <h3>خلاصه سفارش</h3>
+
+          <div class="summary-row">
+            <span>تعداد محصولات</span>
+            <strong id="checkoutCount">0</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>هزینه ارسال</span>
+            <strong>رایگان</strong>
+          </div>
+
+          <div class="summary-total">
+            <span>مبلغ نهایی</span>
+            <strong id="checkoutTotal">0 افغانی</strong>
+          </div>
+
+          <button type="submit" class="primary-btn full-width">
+            ثبت سفارش
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ABOUT PAGE -->
+
+    <section class="page container" id="aboutPage">
+      <span class="eyebrow">داستان ما</span>
+
+      <h1>درباره شیک پوش</h1>
+
+      <div class="about-content">
+        <img
+          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1000"
+          alt="Fashion Store"
+        />
+
+        <div>
+          <h2>زیبایی در سادگی است.</h2>
+
+          <p>
+            شیک پوش با یک ایده ساده شکل گرفت: لباس خوب باید زیبا، باکیفیت و راحت
+            باشد. ما تلاش می‌کنیم بهترین محصولات را با طراحی مدرن و قیمت مناسب
+            ارائه کنیم.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+
+    <section class="page container" id="contactPage">
+      <span class="eyebrow">در ارتباط باشیم</span>
+
+      <h1>تماس با ما</h1>
+
+      <div class="contact-layout">
+        <div>
+          <h2>پاسخگوی شما هستیم.</h2>
+
+          <p>☎ ۰۲۱-۱۲۳۴۵۶۷۸</p>
+          <p>✉ hello@mahpoosh.ir</p>
+          <p>Instagram: @mahpoosh</p>
+        </div>
+
+        <form id="contactForm">
+          <label>
+            نام
+            <input type="text" required />
+          </label>
+
+          <label>
+            ایمیل
+            <input type="email" required />
+          </label>
+
+          <label>
+            پیام شما
+            <textarea rows="5" required></textarea>
+          </label>
+
+          <button class="primary-btn" type="submit">ارسال پیام</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- COLOR CUSTOMIZER PAGE -->
+
+    <section class="page container" id="customizePage">
+      <span class="eyebrow">شخصی‌سازی</span>
+
+      <h1>رنگ لباس را انتخاب کن</h1>
+
+      <div class="customizer">
+        <div class="shirt-preview">
+          <svg viewBox="0 0 400 400">
+            <path
+              id="shirtShape"
+              d="M130 70 L175 45 Q200 75 225 45 L270 70 L350 145 L300 215 L265 185 L265 355 L135 355 L135 185 L100 215 L50 145 Z"
+              fill="#c7a58a"
+              stroke="#333"
+              stroke-width="5"
+            />
+
+            <path
+              d="M175 45 Q200 105 225 45"
+              fill="none"
+              stroke="#333"
+              stroke-width="5"
+            />
+          </svg>
+        </div>
+
+        <div class="color-options">
+          <h2>انتخاب رنگ</h2>
+
+          <div class="swatches">
+            <button
+              style="background: #c7a58a"
+              onclick="changeColor('#c7a58a')"
+            ></button>
+
+            <button
+              style="background: #202020"
+              onclick="changeColor('#202020')"
+            ></button>
+
+            <button
+              style="background: #9e3f43"
+              onclick="changeColor('#9e3f43')"
+            ></button>
+
+            <button
+              style="background: #6d7d68"
+              onclick="changeColor('#6d7d68')"
+            ></button>
+
+            <button
+              style="background: #d8c9a9"
+              onclick="changeColor('#d8c9a9')"
+            ></button>
+
+            <button
+              style="background: #71849b"
+              onclick="changeColor('#71849b')"
+            ></button>
+          </div>
+
+          <label>
+            انتخاب رنگ دلخواه
+            <input
+              type="color"
+              id="customColor"
+              value="#c7a58a"
+              onchange="changeColor(this.value)"
+            />
+          </label>
+
+          <p id="colorCode">#c7a58a</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT DETAIL PAGE -->
+
+    <section class="page container" id="detailPage">
+      <div id="detailContent"></div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="#home" class="logo"> شیک پوش<span>.</span> </a>
+
+          <p>برای استایلی که شبیه خودت باشد.</p>
+        </div>
+
+        <div>
+          <h3>دسترسی سریع</h3>
+          <a href="#home">خانه</a>
+          <a href="#products">محصولات</a>
+          <a href="#about">درباره ما</a>
+          <a href="#contact">تماس با ما</a>
+        </div>
+
+        <div>
+          <h3>ارتباط با ما</h3>
+          <p>093-456789</p>
+          <p>hello@mahpoosh.af</p>
+          <p>@mahpoosh</p>
+        </div>
+
+        <div>
+          <h3>خبرنامه</h3>
+
+          <form id="newsletterForm">
+            <input type="email" placeholder="ایمیل شما" required />
+
+            <button type="submit">عضویت</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="copyright">© ۱۴۰۵ شیک پوش. تمام حقوق محفوظ است.</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
